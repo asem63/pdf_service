@@ -18,3 +18,9 @@ class Document(models.Model):
     """
     name = models.CharField(max_length=4096, blank=True, null=True)
     urls = models.ManyToManyField(Url, related_name='documents')
+
+
+class RawPdfFile(models.Model):
+    original_name = models.CharField(max_length=4096, blank=True, null=True)
+    file = models.FileField(upload_to='files/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)

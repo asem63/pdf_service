@@ -27,10 +27,9 @@ services:
   web:
     build: .
     command: bash -c "python /code/manage.py collectstatic --noinput && python /code/manage.py migrate --noinput && uwsgi --ini /code/config/uwsgi.ini"
-    stdin_open: true
-    tty: true
     volumes:
       - .:/code
+      - media-volume:/www/var/media
     ports:
       - "8081"
     depends_on:
@@ -44,6 +43,7 @@ services:
     command: celery -A pdf_service worker -l info
     volumes:
       - .:/code
+      - media-volume:/www/var/media
     depends_on:
       - web
     networks:
@@ -51,6 +51,7 @@ services:
 
 volumes:
   postgres_data:
+  media-volume:
 
 networks:
   localnet:

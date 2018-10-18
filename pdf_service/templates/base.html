@@ -1,0 +1,49 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	    <title>PDF Parser</title>
+        <link href="{% static 'rest_framework/docs/css/bootstrap-theme.min.css' %}" rel="stylesheet">
+        <link href="{% static 'rest_framework/docs/css/font-awesome-4.0.3.css' %}" rel="stylesheet">
+        <link href="{% static 'rest_framework/docs/css/base.css' %}" rel="stylesheet">
+        <link href="{% static 'rest_framework/docs/css/jquery.json-view.min.css' %}" rel="stylesheet">
+
+        <link href="{% static 'rest_framework/docs/img/favicon.ico' %}" rel="shortcut icon">
+        <style type="text/css">
+            h1{
+              font-size: 30px;
+              color: #000000;
+              text-transform: uppercase;
+              font-weight: 300;
+              text-align: center;
+              margin-bottom: 15px;
+            }
+            .wrap{
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            }
+        </style>
+
+
+    </head>
+
+    <body data-spy="scroll" data-target="#sidebar-nav" data-offset="50">
+    <section>
+      <!--for demo wrap-->
+      <h1>PDF Parser</h1>
+      <div class="wrap clearfix">
+        <form id="upload_form" enctype="multipart/form-data" method="post" action="{% url 'rawpdffile-list' %}">
+          {% csrf_token %}
+          <input id="fileupload" name="file" type="file" />
+          </br>
+          <input type="submit" value="submit" id="submit" />
+        </form>
+      </div>
+    </section>
+    </body>
+</html>
